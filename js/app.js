@@ -57,7 +57,7 @@ app.controller('myCtrl', function($scope, $modal) {
     }
 
     $scope.report = function(){
-            
+
     };
 
     $scope.undo = function(){

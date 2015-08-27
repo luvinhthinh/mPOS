@@ -7,38 +7,7 @@
         <script src="js/ui-bootstrap-tpls-0.13.3.min.js"></script>
         <script type="text/javascript" src="js/app.js"></script>
         <link href="css/bootstrap.min.css" rel="stylesheet">
-
-        <style>
-            .fnt-big{ font-size: 12pt;  }
-            .fnt-med{ font-size: 15pt;  }
-            .fnt-sml{ font-size: 21pt;  }
-
-            table{
-                width: 100%;
-            }
-            tr.big-cat {
-                height: 70px;
-            }
-            tr.med-cat {
-                height: 50px;
-            }
-            td.cat {
-                text-align: center;
-                width: 50%;
-            }
-            td.title {
-                font-weight: bold;
-                font-size: 15pt;
-            }
-            input.big-btn{
-                width: 180px;
-                font-size: 21pt;
-            }
-            input.med-btn{
-                width: 130px;
-                font-size: 15pt;
-            }
-        </style>
+        <link href="css/app.css" rel="stylesheet">
     </head>
     <body ng-app="myApp">
         <div ng-controller='timeCtrl'>
@@ -76,6 +45,7 @@
                                     <tr>
                                         <td class="title" >Total :</td>
                                         <td class="title" >AUD {{totalAmount}} </td>
+                                        <td align="right"><input type="button" value="REPORT" ng-click="report()"/></td>
                                     </tr>
                                 </table>
                             </td></tr>
