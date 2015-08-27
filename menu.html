@@ -1,0 +1,12 @@
+<div>
+    <table>
+        <tr class="big-cat" ng-repeat="item in items" ng-if="$index % 2 == 0">
+            <td align="center">
+                <input class="big-btn" type="button" value="{{items[$index].name}}"  ng-click="addToCart(items[$index].id)"/>
+            </td>
+            <td align="center">
+                <input class="big-btn" type="button" value="{{items[$index + 1].name}}"  ng-click="addToCart(items[$index + 1].id)"/>
+            </td>
+        </tr>
+    </table>
+</div>

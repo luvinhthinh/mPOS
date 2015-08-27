@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script type="text/javascript" src="js/angular.min.js"></script>
+        <script type="text/javascript" src="js/underscore-min.js"></script>
+        <script src="js/angular-animate.min.js"></script>
+        <script src="js/ui-bootstrap-tpls-0.13.3.min.js"></script>
+        <script type="text/javascript" src="js/app.js"></script>
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+
+        <style>
+            .fnt-big{ font-size: 12pt;  }
+            .fnt-med{ font-size: 15pt;  }
+            .fnt-sml{ font-size: 21pt;  }
+
+            table{
+                width: 100%;
+            }
+            tr.big-cat {
+                height: 70px;
+            }
+            tr.med-cat {
+                height: 50px;
+            }
+            td.cat {
+                text-align: center;
+                width: 50%;
+            }
+            td.title {
+                font-weight: bold;
+                font-size: 15pt;
+            }
+            input.big-btn{
+                width: 180px;
+                font-size: 21pt;
+            }
+            input.med-btn{
+                width: 130px;
+                font-size: 15pt;
+            }
+        </style>
+    </head>
+    <body ng-app="myApp">
+        <div ng-controller='timeCtrl'>
+            <p>{{ clock | date:'medium'}}</p>
+        </div>
+
+        <div ng-controller="myCtrl">
+            <table>
+                <tr>
+                    <td width="50%" valign="top">
+                        <table>
+                            <tr class="big-cat">
+                                <td class="cat">
+                                    <input class="big-btn" type="button" value="{{catList[0].name}}" ng-click="open(catList[0].cat)"/>
+                                </td>
+                                <td class="cat">
+                                    <input class="big-btn" type="button" value="{{catList[1].name}}" ng-click="open(catList[1].cat)"/>
+                                </td>
+                            </tr>
+                            <tr  class="big-cat">
+                                <td class="cat">
+                                    <input class="big-btn" type="button" value="{{catList[2].name}}" ng-click="open(catList[2].cat)"/>
+                                </td>
+                                <td class="cat">
+                                    <input class="big-btn" type="button" value="{{catList[3].name}}" ng-click="open(catList[3].cat)"/>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                    <td width="5%"><br></td>
+                    <td width="45%" valign="top">
+                        <table>
+                            <tr><td>
+                                <table>
+                                    <tr>
+                                        <td class="title" >Total :</td>
+                                        <td class="title" >AUD {{totalAmount}} </td>
+                                    </tr>
+                                </table>
+                            </td></tr>
+                            <tr><td><br></td></tr>
+                            <tr><td>
+                                <table>
+                                    <tr>
+                                        <td><input type="button" value="UNDO" ng-click="undo()"/></td>
+                                        <td align="center">
+                                            <input class="med-btn" type="button" value="PAY" ng-click="pay()"/>
+                                        </td>
+                                        <td align="right">
+                                            <input type="button" value="CLEAR ALL" ng-click="clearAll()"/>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td></tr>
+                            <tr><td><br></td></tr>
+                            <tr><td>
+                                <table border="1">
+                                    <thead>
+                                        <tr>
+                                            <th>Name</th>
+                                            <th align="center">Quantity</th>
+                                            <th>Price</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr ng-repeat="item in cart">
+                                        <td>{{item.name}}</td>
+                                        <td>{{item.quantity}} </td>
+                                        <td>$ {{item.price}}</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </td></tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </body>
+</html>
