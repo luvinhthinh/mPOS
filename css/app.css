@@ -1,0 +1,29 @@
+.fnt-big{ font-size: 12pt;  }
+.fnt-med{ font-size: 15pt;  }
+.fnt-sml{ font-size: 21pt;  }
+
+table{
+    width: 100%;
+}
+tr.big-cat {
+    height: 70px;
+}
+tr.med-cat {
+    height: 50px;
+}
+td.cat {
+    text-align: center;
+    width: 50%;
+}
+td.title {
+    font-weight: bold;
+    font-size: 15pt;
+}
+input.big-btn{
+    width: 180px;
+    font-size: 21pt;
+}
+input.med-btn{
+    width: 130px;
+    font-size: 15pt;
+}
