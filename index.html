@@ -27,20 +27,12 @@
                 <tr>
                     <td width="50%" valign="top">
                         <table>
-                            <tr class="big-cat">
+                            <tr class="big-cat" ng-repeat="item in catList" ng-if="$index % 2 == 0">
                                 <td class="cat">
-                                    <input class="big-btn" type="button" value="{{catList[0].name}}" ng-click="open(catList[0].cat)"/>
+                                    <input class="big-btn" type="button" value="{{catList[$index].name}}"  ng-click="open(catList[$index].cat)"/>
                                 </td>
                                 <td class="cat">
-                                    <input class="big-btn" type="button" value="{{catList[1].name}}" ng-click="open(catList[1].cat)"/>
-                                </td>
-                            </tr>
-                            <tr  class="big-cat">
-                                <td class="cat">
-                                    <input class="big-btn" type="button" value="{{catList[2].name}}" ng-click="open(catList[2].cat)"/>
-                                </td>
-                                <td class="cat">
-                                    <input class="big-btn" type="button" value="{{catList[3].name}}" ng-click="open(catList[3].cat)"/>
+                                    <input class="big-btn" type="button" value="{{catList[$index + 1].name}}"  ng-click="open(catList[$index + 1].cat)"/>
                                 </td>
                             </tr>
                         </table>

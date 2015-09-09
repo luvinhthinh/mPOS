@@ -4,6 +4,12 @@
 (function(mainApp, data){
     var catList = data.catList;
     var itemList = data.itemList;
+    var storageKey = 'allTrans';
+
+    function getCurrentDate(){
+        var date = new Date();
+        return date.getDate() + '_' + (date.getMonth()+1) + '_' + date.getFullYear();
+    }
 
     mainApp.controller('myCtrl', function($scope, $modal) {
         $scope.catList = catList;
@@ -22,21 +28,23 @@
         }
 
         function saveTransaction(){
-            var allTransactions = window.localStorage.getItem("trans") || [];
+            var allTransactions = window.localStorage.getItem(storageKey) || '';
             var trans = {
+                date: getCurrentDate(),
                 time: Date.now(),
                 order: $scope.cart,
                 total: $scope.totalAmount,
                 payMode: payMode
             };
-
-            allTransactions.push(trans);
-            window.localStorage.setItem("allTransactions", JSON.stringify(allTransactions));
+            allTransactions += JSON.stringify(trans) + ',';
+            window.localStorage.setItem(storageKey, allTransactions);
         }
 
         $scope.report = function(){
-            var allTransactions = JSON.parse(window.localStorage.getItem("allTransactions") || '[]');
-            console.log(window.localStorage);
+            var allTransactions = JSON.parse('['+ (window.localStorage.getItem(storageKey) || '') +']') ;
+            var transactionToday = _.find(allTransactions, function(trans){ return trans.date == getCurrentDate() });
+            var totalAmountUpToDate = _.reduce(transactionToday, function(memo, trans){ return memo + trans.total; }, 0);
+            console.log(totalAmountUpToDate);
         };
 
         $scope.undo = function(){
