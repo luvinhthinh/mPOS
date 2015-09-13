@@ -5,6 +5,7 @@ window.pos = {
     app: {
         mainApp: angular.module('myApp', ['ui.bootstrap'])
     },
+    view: {},
     data: {},
     controller: {}
 };

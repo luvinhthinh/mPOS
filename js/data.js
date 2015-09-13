@@ -30,6 +30,7 @@
 
     definition.data = {
         catList : catList,
-        itemList : itemList
+        itemList : itemList,
+        getItemById : function(selectedItem){return _.find(itemList, function(item){ return item.id == selectedItem; })}
     };
 })(window.pos);
