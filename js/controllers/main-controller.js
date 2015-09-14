@@ -1,26 +1,16 @@
 /**
  * Created by User on 8/27/2015.
  */
-(function(mainApp, data, views){
+(function(mainApp, data, views, helper){
     var catList = data.catList;
     var itemList = data.itemList;
     var storageKey = 'allTrans';
+    var cartHelper = helper.cart;
+    var tranHelper = helper.transaction;
 
     function getCurrentDate(){
         var date = new Date();
         return date.getDate() + '_' + (date.getMonth()+1) + '_' + date.getFullYear();
-    }
-
-    var cartHelpers = function(cart){
-        return{
-            calculateTotal : function(){return _.reduce(cart, function(memo, item){ return memo + item.price}, 0); },
-            findItemById : function(id){return _.find(cart, function(item){return item.id == id; }); },
-            removeItemById : function(id){ return _.reject(cart, function(item){return item.id == id; }) }
-        }
-    };
-
-    function findItemInCart(cart, selectedItem){
-        return _.find(cart, function(item){return item.id == selectedItem; });
     }
 
     mainApp.controller('myCtrl', function($scope, $modal) {
@@ -30,14 +20,6 @@
 
         var stack = [];
         var payMode = '';
-
-        function updateTotalAmount(){
-            $scope.totalAmount = _.reduce($scope.cart, function(memo, item){ return memo + item.price}, 0);
-        }
-
-        function removeFromCart(itemId){
-            return _.reject($scope.cart, function(item){return item.id == itemId; });
-        }
 
         function saveTransaction(){
             var allTransactions = window.localStorage.getItem(storageKey) || '';
@@ -61,15 +43,8 @@
 
         function undo(){
             var selectedItem = stack.pop();
-            if(selectedItem != undefined){
-                var itemAttr = data.getItemById(selectedItem);
-                var itemInCart = findItemInCart($scope.cart, selectedItem);
-
-                itemInCart.quantity--;
-                itemInCart.price = itemAttr.price * itemInCart.quantity;
-                updateTotalAmount();
-                $scope.cart = (itemInCart.quantity==0) ? removeFromCart(selectedItem) : $scope.cart;
-            }
+            $scope.cart = selectedItem ? cartHelper.removeFromCart($scope.cart, selectedItem) : $scope.cart;
+            cartHelper.updateTotalAmount($scope.cart);
         }
 
         function clearAll(){
@@ -90,22 +65,8 @@
             });
 
             modalInstance.result.then(function (selectedItem) {
-                var itemAttr = data.getItemById(selectedItem);
-                var itemInCart = findItemInCart($scope.cart, selectedItem);
-
-                if(itemInCart == undefined){
-                    $scope.cart.push({
-                        id: itemAttr.id,
-                        name: itemAttr.name,
-                        quantity: 1,
-                        price: itemAttr.price
-                    });
-                }else{
-                    itemInCart.quantity++;
-                    itemInCart.price = itemAttr.price * itemInCart.quantity
-                }
-
-                updateTotalAmount();
+                $scope.cart = cartHelper.addItemToCart($scope.cart, selectedItem);
+                cartHelper.updateTotalAmount($scope.cart);
                 stack.push(selectedItem);
             }, function () { // if error
             });
@@ -134,4 +95,4 @@
         $scope.open = open;
         $scope.pay = pay;
     });
-})(window.pos.app.mainApp, window.pos.data, window.pos.view);
+})(window.pos.app.mainApp, window.pos.data, window.pos.view, window.pos.helper);

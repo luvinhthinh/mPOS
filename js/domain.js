@@ -7,5 +7,9 @@ window.pos = {
     },
     view: {},
     data: {},
+    helper: {
+        cart: {},
+        transaction: {}
+    },
     controller: {}
 };
