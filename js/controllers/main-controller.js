@@ -4,14 +4,8 @@
 (function(mainApp, data, views, helper){
     var catList = data.catList;
     var itemList = data.itemList;
-    var storageKey = 'allTrans';
     var cartHelper = helper.cart;
     var tranHelper = helper.transaction;
-
-    function getCurrentDate(){
-        var date = new Date();
-        return date.getDate() + '_' + (date.getMonth()+1) + '_' + date.getFullYear();
-    }
 
     mainApp.controller('myCtrl', function($scope, $modal) {
         $scope.catList = catList;
@@ -21,24 +15,20 @@
         var stack = [];
         var payMode = '';
 
-        function saveTransaction(){
-            var allTransactions = window.localStorage.getItem(storageKey) || '';
-            var trans = {
-                date: getCurrentDate(),
-                time: Date.now(),
-                order: $scope.cart,
-                total: $scope.totalAmount,
-                payMode: payMode
-            };
-            allTransactions += (allTransactions=='' ? '' : ',') + JSON.stringify(trans);
-            window.localStorage.setItem(storageKey, allTransactions);
-        }
-
         function report(){
-            var allTransactions = JSON.parse('['+ (window.localStorage.getItem(storageKey) || '') +']') ;
-            var transactionToday = _.filter(allTransactions, function(trans){ return trans.date == getCurrentDate() });
-            var totalAmountUpToDate = _.reduce(transactionToday, function(memo, trans){ return memo + trans.total; }, 0);
-            console.log(totalAmountUpToDate);
+            var modalInstance = $modal.open({
+                animation: false,
+                templateUrl: views.getHtmls().report,
+                controller: 'reportCtrl',
+                resolve: {
+                    transactions: function(){ return tranHelper.getAllTransactions();   }
+                }
+            });
+
+            modalInstance.result.then(function () {
+
+            }, function () { // if error
+            });
         }
 
         function undo(){
@@ -83,7 +73,7 @@
             });
             modalInstance.result.then(function (ret) {          // if no error
                 payMode = ret[0];                               // user payment mode
-                saveTransaction();
+                tranHelper.saveTransaction($scope.cart, $scope.totalAmount, payMode);
                 clearAll();
             }, function () { // if error
             });

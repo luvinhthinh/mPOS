@@ -38,5 +38,5 @@
             itemInCart.price = itemAttr.price * itemInCart.quantity
         }
         return cart;
-    }
+    };
 })(window.pos.helper.cart, window.pos.data);
