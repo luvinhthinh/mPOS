@@ -1,0 +1,15 @@
+<div>
+    <table>
+        <thead>
+            <tr>
+                <th> DATE</th>
+                <th> TOTAL</th>
+                <th align="right"><input type="button" value="X" ng-click="ok()"/></th>
+            </tr>
+        </thead>
+        <tr ng-repeat="trans in displayTrans">
+            <td> {{trans.date}}</td>
+            <td>$ {{trans.total}} ( ${{trans.cash}} CASH  +  ${{trans.eftpos}} EFTPOS)</td>
+        </tr>
+    </table>
+</div>

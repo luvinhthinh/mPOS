@@ -7,7 +7,7 @@
             return {
                 menu: 'menu.html',
                 payment: 'pay.html',
-                report: 'report.html'
+                report: 'transaction.html'
             };
         }
     };

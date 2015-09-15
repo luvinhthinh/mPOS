@@ -3,38 +3,42 @@
  */
 (function(definition){
     var storageKey = 'allTrans';
+    var trans = definition.transaction;
 
-    definition.getCurrentDate = function(){
-        var date = new Date();
-        return date.getDate() + '_' + (date.getMonth()+1) + '_' + date.getFullYear();
-    };
-
-    definition.saveTransaction = function(cart, totalAmount, payMode){
+    trans.saveTransaction = function(cart, totalAmount, payMode){
         var allTransactions = window.localStorage.getItem(storageKey) || '';
         var trans = {
-            date: definition.getCurrentDate(),
+            date: definition.utility.getCurrentDate(),
             time: Date.now(),
             order: cart,
             total: totalAmount,
             payMode: payMode
         };
-        allTransactions += (allTransactions=='' ? '' : ',') + JSON.stringify(trans);
+        allTransactions = JSON.stringify(trans) + (allTransactions=='' ? '' : ',') + allTransactions;
         window.localStorage.setItem(storageKey, allTransactions);
         return 'success';
     };
 
-    definition.getTransactionByDate = function(date){
+    trans.getTransactionByDate = function(date){
         return _.filter(
-            definition.getAllTransactions(),
+            trans.getAllTransactions(),
             function(trans){ return trans.date == date }
         );
-
-//        var transactionToday = _.filter(allTransactions, function(trans){ return trans.date == date });
-//        return _.reduce(transactionToday, function(memo, trans){ return memo + trans.total; }, 0);
     };
 
-    definition.getAllTransactions = function(){
+    trans.getTransactionByDateAndMode = function(date, mode){
+        return _.filter(
+            trans.getAllTransactions(),
+            function(trans){ return trans.date == date  && trans.payMode == mode}
+        );
+    };
+
+    trans.getTotalAmount = function(transactions){
+        return _.reduce(transactions, function(memo, trans) { return memo + trans.total}, 0)
+    };
+
+    trans.getAllTransactions = function(){
         return JSON.parse('['+ (window.localStorage.getItem(storageKey) || '') +']');
     }
 
-})(window.pos.helper.transaction);
+})(window.pos.helper);

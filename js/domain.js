@@ -9,7 +9,8 @@ window.pos = {
     data: {},
     helper: {
         cart: {},
-        transaction: {}
+        transaction: {},
+        utility: {}
     },
     controller: {}
 };

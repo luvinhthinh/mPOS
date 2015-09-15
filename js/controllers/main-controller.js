@@ -21,11 +21,11 @@
                 templateUrl: views.getHtmls().report,
                 controller: 'reportCtrl',
                 resolve: {
-                    transactions: function(){ return tranHelper.getAllTransactions();   }
+
                 }
             });
 
-            modalInstance.result.then(function () {
+            modalInstance.result.then(function (selectedItem) {
 
             }, function () { // if error
             });
@@ -34,7 +34,7 @@
         function undo(){
             var selectedItem = stack.pop();
             $scope.cart = selectedItem ? cartHelper.removeFromCart($scope.cart, selectedItem) : $scope.cart;
-            cartHelper.updateTotalAmount($scope.cart);
+            $scope.totalAmount = cartHelper.updateTotalAmount($scope.cart);
         }
 
         function clearAll(){
@@ -56,7 +56,7 @@
 
             modalInstance.result.then(function (selectedItem) {
                 $scope.cart = cartHelper.addItemToCart($scope.cart, selectedItem);
-                cartHelper.updateTotalAmount($scope.cart);
+                $scope.totalAmount = cartHelper.updateTotalAmount($scope.cart);
                 stack.push(selectedItem);
             }, function () { // if error
             });
