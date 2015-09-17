@@ -12,5 +12,7 @@ window.pos = {
         transaction: {},
         utility: {}
     },
-    controller: {}
+    controller: {
+
+    }
 };
