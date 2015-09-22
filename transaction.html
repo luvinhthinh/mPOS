@@ -2,14 +2,14 @@
     <table>
         <thead>
             <tr>
-                <th> DATE</th>
-                <th> TOTAL</th>
-                <th align="right"><input type="button" value="X" ng-click="ok()"/></th>
+                <th class="cart"> DATE</th>
+                <th class="cart"> TOTAL</th>
+                <th class="cart" align="right"><input type="button" value="X" ng-click="ok()"/></th>
             </tr>
         </thead>
         <tr ng-repeat="trans in displayTrans">
-            <td> {{trans.date}}</td>
-            <td>$ {{trans.total}} ( ${{trans.cash}} CASH  +  ${{trans.eftpos}} EFTPOS)</td>
+            <td class="cart"> {{trans.date}}</td>
+            <td class="cart">$ {{trans.total}} ( ${{trans.cash}} CASH  +  ${{trans.eftpos}} EFTPOS)</td>
         </tr>
     </table>
 </div>

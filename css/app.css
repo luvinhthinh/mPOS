@@ -6,7 +6,7 @@ table{
     width: 100%;
 }
 tr.big-cat {
-    height: 70px;
+    height: 100px;
 }
 tr.med-cat {
     height: 50px;
@@ -20,11 +20,11 @@ td.cart, th.cart {
 }
 td.title {
     font-weight: bold;
-    font-size: 15pt;
+    font-size: 27pt;
 }
 input.big-btn{
-    width: 180px;
-    font-size: 23pt;
+    width: 220px;
+    font-size: 27pt;
 }
 input.med-btn{
     width: 130px;
