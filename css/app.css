@@ -15,15 +15,18 @@ td.cat {
     text-align: center;
     width: 50%;
 }
+td.cart, th.cart {
+    font-size: 15pt;
+}
 td.title {
     font-weight: bold;
     font-size: 15pt;
 }
 input.big-btn{
     width: 180px;
-    font-size: 21pt;
+    font-size: 23pt;
 }
 input.med-btn{
     width: 130px;
-    font-size: 15pt;
+    font-size: 17pt;
 }

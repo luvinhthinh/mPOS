@@ -17,6 +17,7 @@
         <script type="text/javascript" src="js/helpers/transaction.js"></script>
 
         <script type="text/javascript" src="js/controllers/time-controller.js"></script>
+        <script type="text/javascript" src="js/controllers/setup-controller.js"></script>
         <script type="text/javascript" src="js/controllers/page-controller.js"></script>
         <script type="text/javascript" src="js/controllers/menu-controller.js"></script>
         <script type="text/javascript" src="js/controllers/payment-controller.js"></script>
@@ -27,15 +28,34 @@
         <link href="css/app.css" rel="stylesheet">
     </head>
     <body ng-app="myApp">
-        <div ng-controller='timeCtrl'>
-            <p>{{ clock | date:'medium'}}</p>
-        </div>
-
+        <table border="0">
+            <tr bgcolor="#f0f8ff">
+                <td align="left" width="20%">
+                    <div ng-controller="dropdownCtrl">
+                        <div class="btn-group" dropdown is-open="status.isopen">
+                            <button id="single-button" type="button" class="btn btn-primary" dropdown-toggle ng-disabled="disabled">
+                                Menu <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu" role="menu" aria-labelledby="single-button">
+                                <li role="menuitem"><a href="#transaction">Report</a></li>
+                                <li role="menuitem"><a href="#">Menu Setup</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </td>
+                <td align="center" class="title" width="60%"> mPOS</td>
+                <td align="right" width="20%">
+                    <div ng-controller='timeCtrl'>
+                        <p>{{ clock | date:'medium'}}</p>
+                    </div>
+                </td>
+            </tr>
+        </table>
         <div ng-controller="myCtrl">
             <table>
                 <tr>
-                    <td width="50%" valign="top">
-                        <table>
+                    <td width="50%" valign="top" bgcolor="#ffebcd">
+                        <table >
                             <tr class="big-cat" ng-repeat="item in catList" ng-if="$index % 2 == 0">
                                 <td class="cat">
                                     <input class="big-btn" type="button" value="{{catList[$index].name}}"  ng-click="open(catList[$index].cat)"/>
@@ -46,8 +66,8 @@
                             </tr>
                         </table>
                     </td>
-                    <td width="5%"><br></td>
-                    <td width="45%" valign="top">
+                    <td width="5%" bgcolor="#87cefa"><br></td>
+                    <td width="45%" valign="top" bgcolor="#87cefa">
                         <table>
                             <tr><td>
                                 <table>
@@ -77,16 +97,16 @@
                                 <table border="1">
                                     <thead>
                                         <tr>
-                                            <th>Name</th>
-                                            <th align="center">Quantity</th>
-                                            <th>Price</th>
+                                            <th class="cart">Name</th>
+                                            <th class="cart" align="center">Quantity</th>
+                                            <th class="cart">Price</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                     <tr ng-repeat="item in cart">
-                                        <td>{{item.name}}</td>
-                                        <td>{{item.quantity}} </td>
-                                        <td>$ {{item.price}}</td>
+                                        <td class="cart">{{item.name}}</td>
+                                        <td class="cart">{{item.quantity}} </td>
+                                        <td class="cart">$ {{item.price}}</td>
                                     </tr>
                                     </tbody>
                                 </table>

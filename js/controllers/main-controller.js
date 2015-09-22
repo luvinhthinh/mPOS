@@ -74,7 +74,7 @@
             modalInstance.result.then(function (ret) {          // if no error
                 payMode = ret[0];                               // user payment mode
                 tranHelper.saveTransaction($scope.cart, $scope.totalAmount, payMode);
-                helper.utility.sendMessage('0478158658', 'test');
+//                helper.utility.sendMessage('0478158658', 'test');
                 clearAll();
             }, function () { // if error
             });
