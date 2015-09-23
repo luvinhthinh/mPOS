@@ -7,7 +7,7 @@
     var cartHelper = helper.cart;
     var tranHelper = helper.transaction;
 
-    mainApp.controller('myCtrl', function($scope, $modal) {
+    mainApp.controller('myCtrl', ['$scope', '$modal', function($scope, $modal) {
         $scope.catList = catList;
         $scope.cart = [];
         $scope.totalAmount = 0;
@@ -85,5 +85,5 @@
         $scope.clearAll = clearAll;
         $scope.open = open;
         $scope.pay = pay;
-    });
+    }]);
 })(window.pos.app.mainApp, window.pos.data, window.pos.view, window.pos.helper);

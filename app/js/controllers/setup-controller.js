@@ -2,7 +2,7 @@
  * Created by User on 9/21/2015.
  */
 (function(mainApp, views){
-    mainApp.controller('dropdownCtrl', function($scope, $modal) {
+    mainApp.controller('dropdownCtrl', ['$scope', '$modal', function($scope, $modal) {
         $scope.status = {
             isopen: false
         };
@@ -30,5 +30,5 @@
         }
 
         $scope.report = report;
-    });
+    }]);
 })(window.pos.app.mainApp, window.pos.view);

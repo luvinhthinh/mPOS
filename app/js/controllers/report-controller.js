@@ -1,6 +1,6 @@
 (function(mainApp, helper){
     var transHelper = helper.transaction;
-    mainApp.controller('reportCtrl', function($scope, $modalInstance) {
+    mainApp.controller('reportCtrl', ['$scope', '$modalInstance', function($scope, $modalInstance) {
         var transactions = helper.transaction.getAllTransactions();
         var displayTrans = [];
 
@@ -20,5 +20,5 @@
         $scope.ok = function(){
             $modalInstance.close();
         }
-    });
+    }]);
 })(window.pos.app.mainApp, window.pos.helper);

@@ -7,7 +7,7 @@
         EFTPOS : 'eftpos'
     };
 
-    mainApp.controller('payCtrl', function($scope, $modalInstance, amount) {
+    mainApp.controller('payCtrl', ['$scope', '$modalInstance', 'amount', function($scope, $modalInstance, amount) {
         $scope.amount = amount;
         $scope.received = '';
         $scope.mode = '-';
@@ -22,5 +22,5 @@
                 $modalInstance.close([$scope.mode, received]);
             }
         };
-    });
+    }]);
 })(window.pos.app.mainApp);
