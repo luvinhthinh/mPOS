@@ -17,8 +17,8 @@
         <script type="text/javascript" src="js/helpers/transaction.js"></script>
 
         <script type="text/javascript" src="js/controllers/time-controller.js"></script>
-        <script type="text/javascript" src="js/controllers/setup-controller.js"></script>
         <script type="text/javascript" src="js/controllers/page-controller.js"></script>
+        <script type="text/javascript" src="js/controllers/setup-controller.js"></script>
         <script type="text/javascript" src="js/controllers/menu-controller.js"></script>
         <script type="text/javascript" src="js/controllers/payment-controller.js"></script>
         <script type="text/javascript" src="js/controllers/report-controller.js"></script>
@@ -32,15 +32,13 @@
             <tr bgcolor="#f0f8ff">
                 <td align="left" width="20%">
                     <div ng-controller="dropdownCtrl">
-                        <div class="btn-group" dropdown is-open="status.isopen">
-                            <button id="single-button" type="button" class="btn btn-primary" dropdown-toggle ng-disabled="disabled">
-                                Menu <span class="caret"></span>
-                            </button>
-                            <ul class="dropdown-menu" role="menu" aria-labelledby="single-button">
-                                <li role="menuitem"><a href="#transaction">Report</a></li>
-                                <li role="menuitem"><a href="#">Menu Setup</a></li>
-                            </ul>
-                        </div>
+                        <span dropdown>
+                          <a href id="setting-dropdown" dropdown-toggle>  Menu  </a>
+                          <ul class="dropdown-menu">
+                              <li><a ng-click="report()">Report</a></li>
+                              <li><a href="#">Menu Setup</a></li>
+                          </ul>
+                        </span>
                     </div>
                 </td>
                 <td align="center" class="title" width="60%"> mPOS</td>
@@ -55,13 +53,13 @@
             <table>
                 <tr>
                     <td width="50%" valign="top" bgcolor="#ffebcd">
-                        <table >
+                        <table>
                             <tr class="big-cat" ng-repeat="item in catList" ng-if="$index % 2 == 0">
                                 <td class="cat">
                                     <input class="big-btn" type="button" value="{{catList[$index].name}}"  ng-click="open(catList[$index].cat)"/>
                                 </td>
                                 <td class="cat">
-                                    <input class="big-btn" type="button" value="{{catList[$index + 1].name}}"  ng-click="open(catList[$index + 1].cat)"/>
+                                    <input ng-if="catList[$index + 1].cat != undefined" class="big-btn" type="button" value="{{catList[$index + 1].name}}"  ng-click="open(catList[$index + 1].cat)"/>
                                 </td>
                             </tr>
                         </table>
@@ -73,8 +71,7 @@
                                 <table>
                                     <tr>
                                         <td class="title" >Total :</td>
-                                        <td class="title" >AUD {{totalAmount}} </td>
-                                        <td align="right"><input type="button" value="REPORT" ng-click="report()"/></td>
+                                        <td class="title" >$ {{totalAmount}} </td>
                                     </tr>
                                 </table>
                             </td></tr>
@@ -82,12 +79,12 @@
                             <tr><td>
                                 <table>
                                     <tr>
-                                        <td><input type="button" value="UNDO" ng-click="undo()"/></td>
+                                        <td><input class="med-btn" type="button" value="UNDO" ng-click="undo()"/></td>
                                         <td align="center">
-                                            <input class="med-btn" type="button" value="PAY" ng-click="pay()"/>
+                                            <input class="big-btn" type="button" value="PAY" ng-click="pay()"/>
                                         </td>
                                         <td align="right">
-                                            <input type="button" value="CLEAR ALL" ng-click="clearAll()"/>
+                                            <input class="med-btn" type="button" value="CLEAR ALL" ng-click="clearAll()"/>
                                         </td>
                                     </tr>
                                 </table>

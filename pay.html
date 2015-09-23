@@ -1,18 +1,17 @@
 <div>
     <table>
         <tr>
-            <td width="30%" class="title" > Amount : AUD {{amount}}</td>
-            <td width="30%"></td>
-            <td width="30%" class="title" > Mode : {{mode}}</td>
+            <td align="left" class="title" > Amount : $ {{amount}}</td>
+            <td align="right" colspan="2" class="title" > Mode : {{mode}}</td>
         </tr>
         <tr class="cat">
-            <td align="center">
+            <td align="center" width="30%">
                 <input class="fnt-med" type="tel" ng-model="received" placeholder="CASH RECEIVED" ng-click="payBy('cash')" />
                 <div  class="fnt-med"> CHANGE : {{received - amount}}</div>
             </td>
-            <td align="center" valign="top">
+            <td align="center" valign="top" width="30%">
                 <input class="med-btn" type="button" value="EFTPOS" ng-click="payBy('eftpos')" /></td>
-            <td align="center" valign="top">
+            <td align="center" valign="top" width="30%">
                 <input class="med-btn" type="button" value="COMPLETE" ng-click="complete(received)" ng-readonly="{{mode=='-'}}" width="50" height="50"/>
             </td>
         </tr>

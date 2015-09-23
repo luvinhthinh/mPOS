@@ -18,7 +18,7 @@
         {id: 'cat2_1', cat:'cat2', name: 'Sugar Cane', price: 5},
         {id: 'cat2_2', cat:'cat2', name: 'Coconut', price: 4},
         {id: 'cat2_2', cat:'cat2', name: 'Coffee', price: 4},
-        {id: 'cat2_3', cat:'cat2', name: 'Lemon Tea', price: 2},
+        {id: 'cat2_3', cat:'cat2', name: 'Lemon Tea', price: 2}
     ];
 
     definition.data = {
