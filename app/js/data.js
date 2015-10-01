@@ -18,7 +18,13 @@
         {id: 'cat2_1', cat:'cat2', name: 'Sugar Cane', price: 5},
         {id: 'cat2_2', cat:'cat2', name: 'Coconut', price: 4},
         {id: 'cat2_3', cat:'cat2', name: 'Coffee', price: 4},
-        {id: 'cat2_4', cat:'cat2', name: 'Lemon Tea', price: 2}
+        {id: 'cat2_4', cat:'cat2', name: 'Lemon Tea', price: 2},
+        {id: 'cat2_5', cat:'cat2', name: 'Water', price: 4},
+        {id: 'cat2_6', cat:'cat2', name: 'Soft Drink', price: 4},
+
+        {id: 'cat3_1', cat:'cat3', name: 'Spring Roll', price: 3},
+        {id: 'cat3_2', cat:'cat3', name: 'Skewer', price: 4},
+        {id: 'cat3_3', cat:'cat3', name: '2 for 7', price: 7}
     ];
 
     definition.data = {
